@@ -1,0 +1,46 @@
+{
+  "name": "barchat",
+  "authors": [
+    "metalaureate <Holonarchy0>"
+  ],
+  "description": "prototype",
+  "main": "app.js",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "angular-bootstrap": "latest",
+    "angular-sails": "latest",
+    "angular-route": "latest",
+    "angular-animate": "latest",
+    "angular-sanitize": "latest",
+    "angular-touch": "latest",
+    "ng-tags-input": "latest",
+    "underscore": "latest",
+    "underscore.string": "latest",
+    "angular-ui-router": "latest",
+    "ngFacebook": "latest",
+    "async": "latest",
+    "moment": "latest",
+    "stanza.io": "git://github.com/otalk/stanza.io.git",
+    "angular-deckgrid": "latest",
+    "angular-flash":"latest",
+    "angular-multi-select": "latest",
+    "angular-adaptive-detection": "latest",
+    "angularjs-geolocation": "latest",
+    "fastclick": "latest",
+    "angular-google-maps": "latest"
+  },
+  "resolutions": {
+    "angular": "1.5.0"
+  }
+}
