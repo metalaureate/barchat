@@ -1,6 +1,12 @@
-app.controller("TopicCtrl", function ($scope, $http,$log,Topic,Flash) {
+app.controller("TopicCtrl", function ($scope, $http, $log, Topic, Flash) {
   $scope.topic = {value: null};
-  // var id = Flash.create('success', '<strong>Well done!</strong> You successfully read this important alert message.', 5000, {class: 'custom-class', id: 'custom-id'}, true);
+
+  /*
+  var id = Flash.create('success', '<strong>Well done!</strong> You successfully read this important alert message.', 5000, {
+    class: 'custom-class',
+    id: 'custom-id'
+  }, true);
+   */
 
   $scope.getEntities = function (val) {
     $log.debug('looking up', val);
