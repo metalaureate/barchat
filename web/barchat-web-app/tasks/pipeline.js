@@ -66,7 +66,8 @@ var jsFilesToInject = [
   'controllers/topicCtrl.js',
   'factories/topicFactory.js',
   'services/wikiDataService.js',
-  'filters/cutFilter.js'
+  'filters/cutFilter.js',
+  'services/topicalGraphService.js'
 
 
   // Use the "exclude" operator to ignore files

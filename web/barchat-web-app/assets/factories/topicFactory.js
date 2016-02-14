@@ -1,7 +1,11 @@
 app.factory("Topic", function () {
-return {
-  topicName: null,
-  wikiID: null,
-  tags: []
-}
+  return {
+    name: null,
+    description: null,
+    wikiID: null,
+    slug: null,
+    isInitializing: null,
+    wikiURL: null,
+    tags: []
+  }
 });

@@ -1,11 +1,11 @@
-app.controller("TopicCtrl", function ($scope, $http, $log, Topic, Flash) {
+app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, TopicalGraph, Flash) {
   $scope.topic = {value: null};
 
   /*
-  var id = Flash.create('success', '<strong>Well done!</strong> You successfully read this important alert message.', 5000, {
-    class: 'custom-class',
-    id: 'custom-id'
-  }, true);
+   var id = Flash.create('success', '<strong>Well done!</strong> You successfully read this important alert message.', 5000, {
+   class: 'custom-class',
+   id: 'custom-id'
+   }, true);
    */
 
   $scope.getEntities = function (val) {
@@ -49,4 +49,37 @@ app.controller("TopicCtrl", function ($scope, $http, $log, Topic, Flash) {
       return results;
     });
   };
+
+  $scope.pickTopic = function (item, model, label) {
+
+    Topic.wikiID = item.mid;
+    Topic.name = item.name;
+    Topic.description = item.description;
+    Topic.slug = item.slug;
+
+  }
+
+  $scope.$watch(function () {
+    return Topic.wikiID
+  }, function (wikiID) {
+    $log.debug('wikiID changed', wikiID);
+    if (wikiID) {
+      $log.debug('wikiID', wikiID);
+      Topic.isInitializing = true;
+      WikiData.getQData(wikiID).then(function (topic) {
+        $log.debug('topic', topic);
+        TopicalGraph.extract(Topic.description).then(function (result) {
+          $log.debug('topic graph', result);
+          Topic.isInitializing = false;
+        }, function (error) {
+          Topic.isInitializing = false;
+        });
+
+
+      });
+    } else {
+      Topic.isInitializing = false;
+    }
+
+  });
 })

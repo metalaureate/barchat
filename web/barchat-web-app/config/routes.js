@@ -34,7 +34,7 @@ module.exports.routes = {
   '/': {
     view: 'layout'
   },
-  'GET /api/bars/hello': 'BarsController.hello'
+  'POST /api/topic/graph/extract/': 'TopicController.graph'
 /*
 
 

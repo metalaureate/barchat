@@ -28,7 +28,10 @@
     "sails-disk": "~0.10.9",
     "socket.io-redis": "^1.0.0",
     "then-jade": "latest",
-    "winston": "latest"
+    "winston": "latest",
+    "request": "latest",
+    "underscore": "latest",
+    "underscore.string": "latest"
   },
   "scripts": {
     "debug": "node debug app.js",
