@@ -1,63 +1,29 @@
 'use strict';
 
 /**
- * The main Sails Angular app module
+ * The main Sails Angular app module + run time initializations
  *
  * @type {angular.Module}
  */
-var app = angular.module('app', ['ui.router','ui.bootstrap', 'ngSails', 'angular-flash.flash-alert-directive',
+var app = angular.module('app', ['ui.router','ui.bootstrap', 'ngSails',
   'akoenig.deckgrid', 'geolocation', 'ngTagsInput', 'client-storage',
-   'facebook', 'adaptive.detection']);
+   'facebook', 'adaptive.detection','ngFlash']);
 
 app.run(function ($log) {
   FastClick.attach(document.body);
-  $log.debug('initialized fastclick');
 });
+
 app.config(function ($stateProvider, $locationProvider) {
   $locationProvider.html5Mode({enabled: true, requireBase: false});
   $stateProvider
     .state('home', {
       resolve: {},
-      url: '/?goto',
-      templateUrl: '/templates/views/home.html',
-      controller: 'HomeCtrl',
-      controllerAs: 'Home'
+      url: '/',
+      templateUrl: '/templates/views/chat.html',
+      controller: 'ChatController'
     })
-    .state('user', {
-      resolve: {},
-      url: '/user/:company_slug/:user_uuid',
-      templateUrl: '/templates/views/user.html',
-      controller: 'UserCtrl',
-      controllerAs: 'UserView'
-    })
-    .state('results', {
-      resolve: {},
-      url: '/results/:company_slug/:user_uuid',
-      templateUrl: '/templates/views/results.html',
-      controller: 'ResultsCtrl',
-      controllerAs: 'Results'
-    })
-    .state('vouch', {
-      resolve: {},
-      url: '/vouch/:link_code',
-      templateUrl: '/templates/views/vouch_code.html',
-      controller: 'VouchCodeCtrl',
-      controllerAs: 'VouchCode'
-    });
-
 });
 
-app.config(function (flashProvider) {
-  // Support bootstrap 3.0 "alert-danger" class with error flash types
-  flashProvider.errorClassnames.push('alert-danger');
-  /**
-   * Also have...
-   *
-   * flashProvider.warnClassnames
-   * flashProvider.infoClassnames
-   * flashProvider.successClassnames
-   */
-});
 
 app.run(function ($rootScope) {
   // Load the facebook SDK asynchronously

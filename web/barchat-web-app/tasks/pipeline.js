@@ -19,7 +19,8 @@ var cssFilesToInject = [
   'styles/**/*.css',
   'bower_components/bootstrap/less/bootstrap.css',
   'bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css',
-
+  'bower_components/angular-bootstrap/ui-bootstrap-csp.css',
+  '/bower_components/angular-flash-alert/dist/angular-flash.min.css',
 ];
 
 
@@ -43,15 +44,15 @@ var jsFilesToInject = [
   '/bower_components/jquery/dist/jquery.js',
   '/bower_components/angular/angular.js',
   '/bower_components/angular-route/angular-route.js',
-  '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
   '/bower_components/angular-bootstrap/ui-bootstrap.min.js',
+  '/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
   '/bower_components/bootstrap/dist/js/bootstrap.js',
   '/bower_components/angular-sails/dist/angular-sails.js',
   '/bower_components/underscore/underscore-min.js',
   '/bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js',
   '/bower_components/angular-ui-router/release/angular-ui-router.min.js',
   '/bower_components/angular-deckgrid/angular-deckgrid.js',
-  '/bower_components/angular-flash/dist/angular-flash.min.js',
+  '/bower_components/angular-flash-alert/dist/angular-flash.min.js',
   '/bower_components/underscore.string/dist/underscore.string.min.js',
   '/bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js',
   '/bower_components/ng-tags-input/ng-tags-input.min.js',
@@ -61,7 +62,12 @@ var jsFilesToInject = [
   // ANGULAR APP FILES
   'app.js',
   'services/storageService.js',
-  'controllers/helloWorldCtrl.js',
+  'controllers/chatCtrl.js',
+  'controllers/topicCtrl.js',
+  'factories/topicFactory.js',
+  'services/wikiDataService.js',
+  'filters/cutFilter.js'
+
 
   // Use the "exclude" operator to ignore files
   // '!js/ignore/these/files/*.js'
@@ -78,6 +84,7 @@ var jsFilesToInject = [
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
 var templateFilesToInject = [
+
   'templates/**/*.html'
 ];
 

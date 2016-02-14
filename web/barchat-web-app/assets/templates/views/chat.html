@@ -1,0 +1,121 @@
+<style>
+  body {
+    background: #ededed;
+    font-family: 'Open Sans', sans-serif;
+
+  }
+
+  .navbar {
+    border-radius: 0px;
+  }
+
+  .form_chat {
+    padding: 10px;
+  }
+
+  .form-control {
+    width: inherit;
+  }
+
+  .chat_message {
+    padding: 10px;
+    color: #000;
+    font-size: 15px;
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .td_class {
+    word-break: break-all;
+    padding: 34px;
+    padding-bottom: 0px;
+    padding-top: 20px;
+    border: 0;
+  }
+
+  .navbar-brand {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .user_name {
+    padding-bottom: 0;
+    color: #fff;
+    font-size: 15px;
+  }
+
+  .col-lg-4, .col-lg-6 {
+    padding-right: 3px;
+    padding-left: 3px;
+  }
+</style>
+<div ng-controller="TopicCtrl">
+  <flash-message duration="5000" show-close="true" on-dismiss="myCallback(flash);"></flash-message>
+
+
+  <script type="text/ng-template" id="wikiTypeahead.html">
+    <a style="cursor:pointer;">
+      <strong>{{match.model.name}}</strong>&nbsp;&nbsp;&nbsp;<em>{{match.model.description
+      | cut:true:40}}</em>
+    </a>
+  </script>
+  <div class="row">
+    <div class="col-md-12">
+      <p>Bar Chat Demo</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-4">
+
+      <div class="center-block">
+        <form method="post" name="topicForm" id="topicForm" novalidate>
+
+          <div class="form-group center-block">
+            <input type="text" ng-model="topic.value" placeholder="Suggest a common topic" style="width:500px;"
+                   uib-typeahead="tag as tag.name for tag in getEntities($viewValue)"
+                   typeahead-loading="loadingTopics"
+                   typeahead-template-url="wikiTypeahead.html"
+                   typeahead-no-results="noResults"
+                   typeahead-editable="false"
+                   typeahead-on-select="pickTopic($item, $model, $label)"
+                   typeahead-wait-ms="300"
+                   class="form-control">
+            <i ng-show="loadingTopics" class="glyphicon glyphicon-refresh"></i>
+
+            <div ng-show="noResults">
+              <i class="glyphicon glyphicon-remove"></i> No Results Found
+            </div>
+            {{topic.value}}
+          </div>
+        </form>
+      </div>
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+
+</div>
+<div>
+  <table class="table">
+    <tr class="chat_message" ng-repeat="chat in chatList | orderBy:predicate:reverse | limitTo: 15">
+      <td class="col-md-12 td_class"><strong>{{ chat.user }} : </strong> {{ chat.message }}</td>
+    </tr>
+  </table>
+  <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="col-lg-12">
+
+      <form class="form_chat">
+        <div class="col-lg-4 col-md-3">
+          <!-- Username -->
+          <input type="text" ng-model="chatUser" class="form-control" placeholder="TypeYourNameHere">
+        </div>
+
+        <div class="col-lg-6 col-md-5">
+          <!-- Chat Message -->
+          <input type="text" ng-model="chatMessage" class="form-control" placeholder="TypeYourMessageHere">
+        </div>
+        <button class="btn btn-default col-lg-2 col-md-2" ng-click="sendMsg()">Send</button>
+      </form>
+
+    </div>
+  </div>
+</div>

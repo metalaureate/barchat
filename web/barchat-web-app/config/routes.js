@@ -31,11 +31,20 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
+  '/': {
+    view: 'layout'
+  },
+  'GET /api/bars/hello': 'BarsController.hello'
+/*
+
 
   '/': {
     view: 'layout'
-  }
-
+  },
+  '/views/*': {
+    view: 'views/helloWorld'
+  },
+ */
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

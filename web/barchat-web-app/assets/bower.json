@@ -33,7 +33,7 @@
     "moment": "latest",
     "stanza.io": "git://github.com/otalk/stanza.io.git",
     "angular-deckgrid": "latest",
-    "angular-flash":"latest",
+    "angular-flash-alert":"latest",
     "angular-multi-select": "latest",
     "angular-adaptive-detection": "latest",
     "angularjs-geolocation": "latest",
