@@ -3,21 +3,15 @@ app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, Topi
   $scope.topicSelection = {value: null};
   $scope.Topic = Topic;
   $scope.typeahead_selected_id=null;
-  /*
-   var id = Flash.create('success', '<strong>Well done!</strong> You successfully read this important alert message.', 5000, {
-   class: 'custom-class',
-   id: 'custom-id'
-   }, true);
-   */
 
-  // pre-populate search if oneis specific
+  // pre-populate search if specified
   if (prepopSearch) {
     $log.info("Prepopulating search with ",prepopSearch);
     $scope.topicSelection.value = null;
     var search = (prepopSearch.replace(',', ' ')).split(' ');
     search.length = 2;
     $timeout(function () {
-      $scope.typeahead_selected_id = search.join(' ');
+      $scope.typeahead_selected_id = search.join(' '); // changing this value triggers the triggerTypeahead directive
     }, 500)
 
   }
@@ -116,7 +110,7 @@ app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, Topi
 
 });
 
-
+//helper directive for opening the typeahead on a selected value
 app.directive('triggerTypeahead', function ($timeout, $log) {
   function linkFunc(scope, attrs, element, ngModel) {
     scope.$watch('trigger', function (value) {
@@ -134,6 +128,7 @@ app.directive('triggerTypeahead', function ($timeout, $log) {
   };
 });
 
+//helper directive to give field focus when modal opens
 app.directive('focusMe', function($timeout, $parse) {
   return {
     link: function(scope, element, attrs) {
