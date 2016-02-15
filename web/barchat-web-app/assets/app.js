@@ -47,3 +47,16 @@ app.run(function ($rootScope) {
     firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
   }());
 });
+
+/*
+TODO
+ */
+//2do scroll from bottom
+//2do trigger topic search when typing /topic
+//2do configure socket io to instantiate the chat as a room with x,y,z members (specified in query params)
+//2do add postgress db persistence
+//2do fix top header
+//2do remove 'from' field once I have implmeented a real room channel
+/*
+DONE
+ */

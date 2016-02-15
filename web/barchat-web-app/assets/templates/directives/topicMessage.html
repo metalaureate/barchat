@@ -4,10 +4,11 @@
   </div>
   <div class="pull-left"><img ng-src="{{ topic.wikiImgSrc }}" class="image" style="width:150px;"/>
   </div>
-  <div class="pull-left" style="margin-left:12px;"><strong>{{ topic.name}}</strong>
+  <div class="pull-left" style="margin-left:12px;width:300px;"><strong>{{ topic.name}}</strong>
     <ul ><li ng-repeat="topic in topic.relatedTopics"><a ui-sref="home({search: topic.text})">{{topic.text}}</a></li></ul>
   </div>
-  <div class="pull-left" style="margin-left:12px;">
-    Reply to this message by picking a related topic from the list, or change the subject.
+  <div class="pull-left" style="margin-left:12px;width:250px;"><div style="float:none;">
+    <em>Reply to this message by picking a related topic from the list, or change the '/topic', or chat about it.</em>
+  </div>
     </div>
 </div>

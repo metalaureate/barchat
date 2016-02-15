@@ -1,0 +1,46 @@
+<script type="text/ng-template" id="wikiTypeahead.html">
+  <a style="cursor:pointer;">
+    <strong>{{match.model.name}}</strong>&nbsp;&nbsp;&nbsp;<em>{{match.model.description
+    | cut:true:40}}</em>
+  </a>
+</script>
+
+<div class="modal-header">
+  <h3 class="modal-title">Get to know each other with topics</h3>
+</div>
+<div class="modal-body">
+  <p>Get to know each other by taking turns free-associating with the topics that interest you.</p>
+  <div class="center-block">
+    <form method="post" name="topicForm" id="topicForm" novalidate>
+
+      <div class="form-group center-block">
+        <input type="text" ng-model="topicSelection.value" placeholder="Suggest a common topic" focus-me="true"
+               uib-typeahead="tag as tag.name for tag in getEntities($viewValue)"
+               typeahead-loading="loadingTopics"
+               typeahead-template-url="wikiTypeahead.html"
+               typeahead-no-results="noResults"
+               typeahead-editable="false"
+               typeahead-focus-first="false"
+               typeahead-on-select="pickTopic($item, $model, $label)"
+               typeahead-wait-ms="300"
+               trigger-typeahead trigger="typeahead_selected_id"
+               class="form-control">
+        <i ng-show="loadingTopics" class="glyphicon glyphicon-refresh"></i>
+        <div ng-show="Topic.isInitializing" class="center-block">Exploring {{ topicSelection.value.name}}... please
+          wait...
+        </div>
+        <div ng-show="noResults">
+          <i class="glyphicon glyphicon-remove"></i> No Results Found
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <!-- button class="btn btn-primary" type="button" ng-click="ok()">OK</button -->
+  <img ng-show="Topic.isInitializing"
+       src="images/progress_bar.gif" class="pull-left"/>
+  <button class="btn btn-warning" type="button" ng-click="$dismiss()">Close</button>
+</div>
+
