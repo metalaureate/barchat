@@ -1,7 +1,7 @@
 app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, TopicalGraph, oEmbed,
-                                      Flash, User,$timeout,$stateParams) {
+                                      Flash, User, $timeout, $stateParams) {
   $scope.topicSelection = {value: null};
-  $scope.Topic=Topic;
+  $scope.Topic = Topic;
 
   /*
    var id = Flash.create('success', '<strong>Well done!</strong> You successfully read this important alert message.', 5000, {
@@ -58,34 +58,29 @@ app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, Topi
     Topic.name = item.name;
     Topic.description = item.description;
     Topic.slug = item.slug;
-
-  }
-
-  $scope.$watch(function () {
-    return Topic.wikiID
-  }, function (wikiID) {
-    $log.debug('wikiID changed', wikiID);
-    if (wikiID) {
-      $log.debug('wikiID', wikiID);
+    if (Topic.wikiID) {
+      $log.debug('wikiID', Topic.wikiID);
       Topic.isInitializing = true;
-      WikiData.getQData(wikiID).then(function (topic) {
+      WikiData.getQData(Topic.wikiID).then(function (topic) {
         $log.debug('topic', topic);
-        if (!topic)  { Topic.isInitializing=false; return}
+        if (!topic) {
+          Topic.isInitializing = false;
+          return
+        }
         TopicalGraph.extract(Topic.description).then(function (topics) {
           $log.debug('topic graph', topics);
-          Topic.relatedTopics=topics;
+          Topic.relatedTopics = topics;
           oEmbed.get(Topic.wikiURL).then(function (embed) {
-            $log.debug('preview',embed);
-            Topic.wikiImgSrc=(embed) ? embed.thumbnail_url : null;
+            $log.debug('preview', embed);
+            Topic.wikiImgSrc = (embed) ? embed.thumbnail_url : null;
             Topic.isInitializing = false;
             // var topicList= topics.join(_.map(topics, function (t) { return t.text}),", ");
-            io.socket.post('/chat/addconv/',{user:User.username,message: JSON.stringify(Topic), msgtype:'topic'});
+            io.socket.post('/chat/addconv/', {user: User.username, message: JSON.stringify(Topic), msgtype: 'topic'});
 
           });
 
 
         }, function (error) {
-          alert('hello');
           Topic.isInitializing = false;
         });
 
@@ -95,12 +90,13 @@ app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, Topi
       Topic.isInitializing = false;
     }
 
-  });
+  }
+
 
   if ($stateParams.search) {
-    $scope.topicSelection.value=null;
-    var search=($stateParams.search.replace(',',' ')).split(' ');
-    search.length=2;
+    $scope.topicSelection.value = null;
+    var search = ($stateParams.search.replace(',', ' ')).split(' ');
+    search.length = 2;
     $scope.typeahead_selected_id = search.join(' ');
   }
 

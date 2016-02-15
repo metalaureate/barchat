@@ -21,7 +21,9 @@ app.service('WikiData', function ($q, $http, $log, Topic, Flash) {
       var wiki_title, description;
       try {
         description = res.data.entities[mid].descriptions.en.value;
-
+      } catch(e) {
+      }
+      try {
         wiki_title = res.data.entities[mid].sitelinks.enwiki.title;
 
       } catch (e) {

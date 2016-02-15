@@ -81,7 +81,8 @@
                    trigger-typeahead trigger="typeahead_selected_id"
                    class="form-control">
             <i ng-show="loadingTopics" class="glyphicon glyphicon-refresh"></i>
-<div ng-show="Topic.isInitializing" class="center-block">Exploring this topic... please wait... <img src="images/progress_bar.gif" /></div>
+            <div ng-show="Topic.isInitializing" class="center-block">Exploring {{ topicSelection.value.name}}... please wait... <img
+              src="images/progress_bar.gif"/></div>
             <div ng-show="noResults">
               <i class="glyphicon glyphicon-remove"></i> No Results Found
             </div>
@@ -95,10 +96,10 @@
 </div>
 <div>
   <table class="table">
-    <tr class="chat_message" ng-repeat="chat in chatList | orderBy:predicate:reverse | limitTo: 15">
+    <tr class="chat_message" ng-repeat="chat in chatList | orderBy:predicate:reverse ">
       <td class="col-md-12 td_class">
-        <div chat-message chat="chat" ng-show="chat.msgtype=='chat'" ></div>
-        <div topic-message chat="chat" ng-show="chat.msgtype=='topic'" ></div>
+        <div chat-message chat="chat" ng-show="chat.msgtype=='chat'"></div>
+        <div topic-message chat="chat" ng-show="chat.msgtype=='topic'"></div>
 
       </td>
     </tr>
