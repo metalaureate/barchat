@@ -7,7 +7,7 @@
 var winston=require('winston');
 
 module.exports = {
-	graph: function (req,res) {
+	extractGraph: function (req,res) {
     var corpus=req.body.corpus;
     winston.info('looking up corpus',corpus.substr(0,100));
     TopicalGraphService.extract(corpus, function (error, result) {

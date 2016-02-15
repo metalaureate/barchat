@@ -59,7 +59,7 @@
   </script>
   <div class="row">
     <div class="col-md-12">
-      <p>Bar Chat Demo</p>
+      <p style="padding-left:12px;"><strong>Bar Chat Demo</strong></p>
     </div>
   </div>
   <div class="row">
@@ -69,17 +69,19 @@
         <form method="post" name="topicForm" id="topicForm" novalidate>
 
           <div class="form-group center-block">
-            <input type="text" ng-model="topic.value" placeholder="Suggest a common topic" style="width:500px;"
+            <input type="text" ng-model="topicSelection.value" placeholder="Suggest a common topic" style="width:500px;"
                    uib-typeahead="tag as tag.name for tag in getEntities($viewValue)"
                    typeahead-loading="loadingTopics"
                    typeahead-template-url="wikiTypeahead.html"
                    typeahead-no-results="noResults"
                    typeahead-editable="false"
+                   typeahead-focus-first="false"
                    typeahead-on-select="pickTopic($item, $model, $label)"
                    typeahead-wait-ms="300"
+                   trigger-typeahead trigger="typeahead_selected_id"
                    class="form-control">
             <i ng-show="loadingTopics" class="glyphicon glyphicon-refresh"></i>
-
+<div ng-show="Topic.isInitializing" class="center-block">Exploring this topic... please wait... <img src="images/progress_bar.gif" /></div>
             <div ng-show="noResults">
               <i class="glyphicon glyphicon-remove"></i> No Results Found
             </div>
@@ -94,7 +96,11 @@
 <div>
   <table class="table">
     <tr class="chat_message" ng-repeat="chat in chatList | orderBy:predicate:reverse | limitTo: 15">
-      <td class="col-md-12 td_class"><strong>{{ chat.user }} : </strong> {{ chat.message }}</td>
+      <td class="col-md-12 td_class">
+        <div chat-message chat="chat" ng-show="chat.msgtype=='chat'" ></div>
+        <div topic-message chat="chat" ng-show="chat.msgtype=='topic'" ></div>
+
+      </td>
     </tr>
   </table>
   <div class="navbar navbar-inverse navbar-fixed-bottom">
@@ -103,12 +109,12 @@
       <form class="form_chat">
         <div class="col-lg-4 col-md-3">
           <!-- Username -->
-          <input type="text" ng-model="chatUser" class="form-control" placeholder="TypeYourNameHere">
+          <input type="text" ng-model="chatUser" class="form-control" placeholder="Type Your Name Here">
         </div>
 
         <div class="col-lg-6 col-md-5">
           <!-- Chat Message -->
-          <input type="text" ng-model="chatMessage" class="form-control" placeholder="TypeYourMessageHere">
+          <input type="text" ng-model="chatMessage" class="form-control" placeholder="Type Your Message Here">
         </div>
         <button class="btn btn-default col-lg-2 col-md-2" ng-click="sendMsg()">Send</button>
       </form>

@@ -1,3 +1,10 @@
+/**
+ * TopicalGraphService
+ *
+ * @description :: Server-side service for extracting topic tags from a corpus (e.g., a wikipedia entry)
+ * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ */
+
 var winston=require('winston');
 var _=require('underscore');
 _.str = require('underscore.string');

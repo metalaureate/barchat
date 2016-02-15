@@ -18,7 +18,7 @@ app.config(function ($stateProvider, $locationProvider) {
   $stateProvider
     .state('home', {
       resolve: {},
-      url: '/',
+      url: '/?search',
       templateUrl: '/templates/views/chat.html',
       controller: 'ChatController'
     })

@@ -1,0 +1,13 @@
+<div>
+  <div class="pull-left">
+  <strong>{{ chat.user }} : </strong>&nbsp;
+  </div>
+  <div class="pull-left"><img ng-src="{{ topic.wikiImgSrc }}" class="image" style="width:150px;"/>
+  </div>
+  <div class="pull-left" style="margin-left:12px;"><strong>{{ topic.name}}</strong>
+    <ul ><li ng-repeat="topic in topic.relatedTopics"><a ui-sref="home({search: topic.text})">{{topic.text}}</a></li></ul>
+  </div>
+  <div class="pull-left" style="margin-left:12px;">
+    Reply to this message by picking a related topic from the list, or change the subject.
+    </div>
+</div>

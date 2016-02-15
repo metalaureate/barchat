@@ -1,4 +1,4 @@
-app.controller('ChatController',['$http','$log','$scope',function($http,$log,$scope){
+app.controller('ChatController',function($http,$log,$scope,User,$timeout){
   $scope.predicate = '-id';
   $scope.reverse = false;
   $scope.baseUrl = 'http://localhost:1337';
@@ -16,7 +16,8 @@ app.controller('ChatController',['$http','$log','$scope',function($http,$log,$sc
   };
 
   $scope.getAllchat();
-  $scope.chatUser = "simonskiBot"
+  $scope.chatUser = User.username;
+  $scope.$watch(function () { return $scope.chatUser}, function (user) {User.username=user});
   $scope.chatMessage="";
 
   io.socket.on('chat',function(obj){
@@ -31,7 +32,9 @@ app.controller('ChatController',['$http','$log','$scope',function($http,$log,$sc
 
   $scope.sendMsg = function(){
     $log.info($scope.chatMessage);
-    io.socket.post('/chat/addconv/',{user:$scope.chatUser,message: $scope.chatMessage});
+    io.socket.post('/chat/addconv/',{user:User.username,message: $scope.chatMessage, msgtype: 'chat'});
     $scope.chatMessage = "";
   };
-}]);
+
+
+});

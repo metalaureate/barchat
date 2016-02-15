@@ -16,6 +16,10 @@ module.exports = {
     message:{
       type:'string',
       required:true
+    },
+    msgtype: {
+      type:'string',
+      required:false
     }
 
   }

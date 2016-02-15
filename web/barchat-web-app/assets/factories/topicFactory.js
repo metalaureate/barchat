@@ -6,6 +6,7 @@ app.factory("Topic", function () {
     slug: null,
     isInitializing: null,
     wikiURL: null,
-    tags: []
+    wikiImgSrc: null,
+    relatedTopics: []
   }
 });

@@ -34,17 +34,20 @@ module.exports.routes = {
   '/': {
     view: 'layout'
   },
-  'POST /api/topic/graph/extract/': 'TopicController.graph'
-/*
+  'POST /api/topic/graph/extract/': 'TopicController.extractGraph',
+  'POST /chat/addconv/': 'ChatController.addConv',
+  'GET /chat/addconv/': 'ChatController.addConv'
+
+  /*
 
 
-  '/': {
-    view: 'layout'
-  },
-  '/views/*': {
-    view: 'views/helloWorld'
-  },
- */
+    '/': {
+      view: 'layout'
+    },
+    '/views/*': {
+      view: 'views/helloWorld'
+    },
+   */
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

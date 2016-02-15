@@ -61,13 +61,17 @@ var jsFilesToInject = [
   'bower_components/ngFacebook/version/v0.0.7/ngFacebook.min.js',
   // ANGULAR APP FILES
   'app.js',
-  'services/storageService.js',
+  'services/localStorageService.js',
   'controllers/chatCtrl.js',
   'controllers/topicCtrl.js',
   'factories/topicFactory.js',
   'services/wikiDataService.js',
   'filters/cutFilter.js',
-  'services/topicalGraphService.js'
+  'services/topicalGraphService.js',
+  'services/oEmbedService.js',
+  'factories/userFactory.js',
+  'directives/chatMessageDir.js',
+  'directives/topicMessageDir.js'
 
 
   // Use the "exclude" operator to ignore files

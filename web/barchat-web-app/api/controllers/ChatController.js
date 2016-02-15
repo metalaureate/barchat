@@ -17,7 +17,7 @@ module.exports = {
       Chat.create(data_from_client)
         .exec(function(error,data_from_client){
           console.log('client data',data_from_client);
-          var payload={id: data_from_client.id, message : data_from_client.message , user:data_from_client.user};
+          var payload={id: data_from_client.id, message : data_from_client.message , user:data_from_client.user,msgtype: data_from_client.msgtype};
           payload.toJSON=function () { return payload};
 
           console.log(error,payload);

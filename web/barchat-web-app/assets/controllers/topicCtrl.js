@@ -1,5 +1,7 @@
-app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, TopicalGraph, Flash) {
-  $scope.topic = {value: null};
+app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, TopicalGraph, oEmbed,
+                                      Flash, User,$timeout,$stateParams) {
+  $scope.topicSelection = {value: null};
+  $scope.Topic=Topic;
 
   /*
    var id = Flash.create('success', '<strong>Well done!</strong> You successfully read this important alert message.', 5000, {
@@ -68,10 +70,22 @@ app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, Topi
       Topic.isInitializing = true;
       WikiData.getQData(wikiID).then(function (topic) {
         $log.debug('topic', topic);
-        TopicalGraph.extract(Topic.description).then(function (result) {
-          $log.debug('topic graph', result);
-          Topic.isInitializing = false;
+        if (!topic)  { Topic.isInitializing=false; return}
+        TopicalGraph.extract(Topic.description).then(function (topics) {
+          $log.debug('topic graph', topics);
+          Topic.relatedTopics=topics;
+          oEmbed.get(Topic.wikiURL).then(function (embed) {
+            $log.debug('preview',embed);
+            Topic.wikiImgSrc=(embed) ? embed.thumbnail_url : null;
+            Topic.isInitializing = false;
+            // var topicList= topics.join(_.map(topics, function (t) { return t.text}),", ");
+            io.socket.post('/chat/addconv/',{user:User.username,message: JSON.stringify(Topic), msgtype:'topic'});
+
+          });
+
+
         }, function (error) {
+          alert('hello');
           Topic.isInitializing = false;
         });
 
@@ -82,4 +96,31 @@ app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, Topi
     }
 
   });
-})
+
+  if ($stateParams.search) {
+    $scope.topicSelection.value=null;
+    var search=($stateParams.search.replace(',',' ')).split(' ');
+    search.length=2;
+    $scope.typeahead_selected_id = search.join(' ');
+  }
+
+
+});
+
+
+app.directive('triggerTypeahead', function ($timeout, $log) {
+  function linkFunc(scope, attrs, element, ngModel) {
+    scope.$watch('trigger', function (value) {
+      $log.debug('trigger typeahead', value);
+      ngModel.$setViewValue(value); //trigger $parser through $setViewValue.
+    });
+
+  }
+
+  return {
+    link: linkFunc,
+    require: 'ngModel',
+    restrict: 'A',
+    scope: {trigger: "="}
+  };
+});
