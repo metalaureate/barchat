@@ -19,6 +19,9 @@ html(ng-app="app")
     link(rel="stylesheet", href="/bower_components/angular-flash-alert/dist/angular-flash.min.css")
     // STYLES END
   body
+    .navbar.navbar-inverse.navbar-fixed-top
+      div(style='padding-top:8px;padding-left:8px;color:#ffffff;font-size:24px;') Bar Chat Prototype
+
     flash-message(duration='5000', show-close='true', on-dismiss='flashCallback(flash);', style='position:fixed;left:0px;top:0px;z-index:9999;width:100%;')
     div(ui-view)
   // SCRIPTS
@@ -40,6 +43,7 @@ html(ng-app="app")
   script(src="/bower_components/angular-adaptive-detection/angular-adaptive-detection.min.js")
   script(src="/bower_components/fastclick/lib/fastclick.js")
   script(src="/bower_components/ngFacebook/version/v0.0.7/ngFacebook.min.js")
+  script(src="/bower_components/moment/moment.js")
   script(src="/app.js")
   script(src="/services/localStorageService.js")
   script(src="/controllers/chatCtrl.js")

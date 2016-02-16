@@ -20,6 +20,10 @@ module.exports = {
     msgtype: {
       type:'string',
       required:false
+    },
+    sentdatetime: {
+      type: 'date',
+      required:false
     }
 
   }

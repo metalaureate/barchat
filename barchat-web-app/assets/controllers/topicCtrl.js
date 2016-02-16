@@ -84,7 +84,7 @@ app.controller("TopicCtrl", function ($scope, $http, $log, Topic, WikiData, Topi
             Topic.wikiImgSrc = (embed) ? embed.thumbnail_url : null;
             Topic.isInitializing = false;
             // var topicList= topics.join(_.map(topics, function (t) { return t.text}),", ");
-            io.socket.post('/chat/addconv/', {user: User.username, message: JSON.stringify(Topic), msgtype: 'topic'});
+            io.socket.post('/chat/addconv/', {user: User.username, message: JSON.stringify(Topic), msgtype: 'topic',sentdatetime: new Date()});
 
             $uibModalInstance.close(item);
 

@@ -2,7 +2,7 @@
   <div class="pull-left">
   <strong>{{ chat.user }} : </strong>&nbsp;
   </div>
-  <div class="pull-left"><img ng-src="{{ topic.wikiImgSrc }}" class="image" style="width:150px;"/>
+  <div class="pull-left">  <a href="{{ topic.wikiURL}}" target="_blank"><img ng-src="{{ topic.wikiImgSrc }}" class="image" style="width:150px;"/></a>
   </div>
   <div class="pull-left" style="margin-left:12px;width:300px;"><strong>{{ topic.name}}</strong>
     <ul ><li ng-repeat="topic in topic.relatedTopics"><a ui-sref="home({search: topic.text})">{{topic.text}}</a></li></ul>

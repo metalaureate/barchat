@@ -59,6 +59,7 @@ var jsFilesToInject = [
   'bower_components/angular-adaptive-detection/angular-adaptive-detection.min.js',
   'bower_components/fastclick/lib/fastclick.js',
   'bower_components/ngFacebook/version/v0.0.7/ngFacebook.min.js',
+  'bower_components/moment/moment.js',
   // ANGULAR APP FILES
   'app.js',
   'services/localStorageService.js',
