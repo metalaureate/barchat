@@ -1,0 +1,5 @@
+barchat-web:
+    build: ./barchat-web-app/
+    command: npm start
+
+

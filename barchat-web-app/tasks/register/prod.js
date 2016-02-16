@@ -1,4 +1,7 @@
 module.exports = function (grunt) {
+  console.log('Running grunt prod');
+  /*
+  //disabled prod because kept getting socket.io.get undefined error
 	grunt.registerTask('prod', [
 		'compileAssets',
 		'concat',
@@ -11,4 +14,7 @@ module.exports = function (grunt) {
 		'sails-linker:prodStylesJade',
 		'sails-linker:devTplJade'
 	]);
+   */
+  grunt.registerTask('prod', ['compileAssets', 'linkAssets']);
+
 };

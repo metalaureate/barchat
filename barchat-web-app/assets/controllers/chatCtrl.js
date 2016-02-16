@@ -1,7 +1,7 @@
 app.controller('ChatController', function ($http, $log, $scope, User, $timeout, $uibModal,$stateParams,$uiViewScroll) {
   $scope.predicate = '-id';
   $scope.reverse = false;
-  $scope.baseUrl = 'http://localhost:1337';
+  $scope.baseUrl = ''; //http://localhost:1337
   $scope.chatList = [];
   $scope.getAllchat = function () {
 
